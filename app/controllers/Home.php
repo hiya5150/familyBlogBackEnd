@@ -1,9 +1,21 @@
 <?php
 class Home extends Controller{
 
-    public function __construct() {
-        $this->postModel = $this->model('Post');
+        private $currentModel;
+
+        public function __construct() {
+        $this->currentModel = $this->model('post');
     }
+
+    //this function returns all posts from the database
+        public function loadPosts() {
+            if($posts = $this->currentModel->viewPosts()) {
+                echo json_encode($posts);
+            } else {
+                echo json_encode(['success'=>false]);
+            }
+
+}
 
     //if the URL api request is unsuccessful, this will run
     public function notFound() {
