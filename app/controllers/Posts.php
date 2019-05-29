@@ -17,17 +17,17 @@ class Posts extends Controller {
     }
 
     public function createPost() {
-        //this is dummy data, which will be replaced by actual data submitted from the front end
+        //json object to be submitted
+
         $data = [
-            'user_id' => '1',
-            'post_title' => 'Post One',
-            'post_body' => 'Post One will be quite long',
-            'post_author' => 'Chaya Eigner'
+
+            'post_title' => $_POST['post_title'],
+            'post_body' => $_POST['post_body'],
+            'author' => $_POST['author'],
+            'user_id' => $_POST['user_id'],
         ];
         if($this->currentModel->createPost($data)) {
-            echo 'success';
-        } else {
-            echo 'something went wrong';
+            echo json_encode($data);
         }
 
     }
