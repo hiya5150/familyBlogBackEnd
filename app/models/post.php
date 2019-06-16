@@ -29,3 +29,5 @@ class post {
         }
     }
 }
+// TODO Login returns token
+// TODO verify token in the controller before anything else (only authorized users can access the server)
