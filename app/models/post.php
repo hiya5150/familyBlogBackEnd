@@ -31,3 +31,4 @@ class post {
 }
 // TODO Login returns token
 // TODO verify token in the controller before anything else (only authorized users can access the server)
+// TODO password should be validated when user tries to create post or other action like that

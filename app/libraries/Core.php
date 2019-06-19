@@ -1,8 +1,9 @@
 <?php
 //create URL's and load core controllers
 class Core {
+    protected $currentDirectory = 'SignIn';
     protected $currentController = 'Home';
-    protected $currentMethod = 'index';
+    protected $currentMethod = 'notFound';
     protected $params = [];
 
     public function __construct() {

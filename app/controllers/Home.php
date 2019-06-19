@@ -4,7 +4,7 @@ class Home extends Controller{
         private $currentModel;
 
         public function __construct() {
-        $this->currentModel = $this->model('post');
+        $this->currentModel = $this->model('SignIn');
     }
 
     //this function returns all posts from the database
