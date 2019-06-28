@@ -11,7 +11,7 @@ class SignIn {
 
     }
 
-    public function loginInUser($username, $password) {
+    public function logInUser($username, $password) {
             $this->db->query('SELECT * from users WHERE username = :username');
             $this->db->bind(':username', $username);
             $row = $this->db->single();
