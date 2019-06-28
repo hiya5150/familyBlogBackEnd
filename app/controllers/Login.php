@@ -1,7 +1,7 @@
 <?php
 use ReallySimpleJWT\Token;
 
-class Login {
+class Login extends Controller {
 
 private $token;
 private $currentModel;
