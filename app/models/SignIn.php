@@ -35,4 +35,4 @@ class SignIn {
             }
 }
 
-// TODO video re hashing passwords https://www.youtube.com/watch?v=8ZtInClXe1Q
+// TODO video re hashing passwords https://www.youtube.com/watch?v=8ZtInClXe1Q. mistake seems to be with logInUser method. also, there is issue with SetToken method, I am not passing in hte correct info
