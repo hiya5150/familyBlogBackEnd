@@ -1,4 +1,4 @@
-error seems to be with notFound. I need to figure out how the routing works
+error with login method. getting back error login denied
 
 # familyBlogBackEnd
 up to traversy mvc section 4 chapter 23 8:59. 
