@@ -3,7 +3,7 @@
 class Core {
     protected $currentDirectory = 'SignIn';
     protected $currentController = 'Home';
-    protected $currentMethod = 'notFound';
+    protected $currentMethod = 'loadPosts';
     protected $params = [];
 
     public function __construct() {
@@ -43,9 +43,10 @@ class Core {
 
     public function getUrl() {
         if(isset($_GET['url'])) {
-            $url = rtrim($_GET['url'], '/');
-            $url = filter_var($url, FILTER_SANITIZE_URL);
-            $url = explode('/', $url);
+            // if the url is set
+            $url = rtrim($_GET['url'], '/'); //strip any ending slash
+            $url = filter_var($url, FILTER_SANITIZE_URL); //sanitize - remove any character that don't belong in url
+            $url = explode('/', $url); //break into array
             return $url;
         }
     }

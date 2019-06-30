@@ -6,17 +6,7 @@ class Posts extends Controller {
         $this->currentModel = $this->model('post');
     }
 
-    public function viewPosts() {
-        $posts = $this->currentModel->viewPosts();
-
-        $data = [
-            'posts' => $posts
-        ];
-        header('Content-type: application/json');
-        echo json_encode($data);
-    }
-
-    public function createPost() {
+       public function createPost() {
         //json object to be submitted
 
         $data = [
