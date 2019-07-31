@@ -3,7 +3,7 @@
 class Core {
     protected $currentDirectory = 'SignIn';
     protected $currentController = 'Home';
-    protected $currentMethod = 'notFound';
+    protected $currentMethod = 'loadPosts';
     protected $params = [];
 
     public function __construct() {

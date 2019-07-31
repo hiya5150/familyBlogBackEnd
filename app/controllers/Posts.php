@@ -13,7 +13,7 @@ class Posts extends Controller {
 
             'post_title' => $_POST['post_title'],
             'post_body' => $_POST['post_body'],
-            'author' => $_POST['author'],
+            'post_author' => $_POST['post_author'],
             'user_id' => $_POST['user_id'],
         ];
         if($this->currentModel->createPost($data)) {
