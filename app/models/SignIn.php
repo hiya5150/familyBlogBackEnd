@@ -11,34 +11,65 @@ class SignIn
         $this->db = new Database;
 
     }
-
-    public function logInUser($username, $password)
+    // login blogger
+    public function logInBlogger($username, $password)
     {
-        $this->db->query('SELECT * FROM users WHERE username = :username');
+        $this->db->query('SELECT * FROM bloggers WHERE blogger_username = :username');
         $this->db->bind(':username', $username);
 
-        $row = $this->db->single();
+        // tries to get info from db
+        if ($row = $this->db->single()){
+            $hashed_password = $row->blogger_password;
+            // verifies password with encrypted pass from database
+            if(password_verify($password, $hashed_password)){
+                return $row;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    // login visitor
+    public function logInVisitor($username, $password)
+    {
+        $this->db->query('SELECT * FROM visitors WHERE visitor_username = :username');
+        $this->db->bind(':username', $username);
 
-              $hashed_password = $row->password;
-      if(password_verify($password, $hashed_password)){
-          return $row;
-      } else {
-          return false;
-      }
+        // tries to get info from db
+        if ($row = $this->db->single()){
+            $hashed_password = $row->visitor_password;
+            // verifies password with encrypted pass from database
+            if(password_verify($password, $hashed_password)){
+                return $row;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
     //call this function if user successfully logged in
-    public function setToken($auth_userid,$ip)
+    public function setToken($id, $type, $ip)
     {
         try {
             //try creating random token else throw error
-            if ($token = bin2hex(random_bytes(32))) {
+            if ($token = bin2hex(random_bytes(60))) {
                 //hashing password
-                $this->db->query('INSERT INTO auth(token, ip, expiry, auth_userid) VALUES (:token, :ip, NOW() + INTERVAL 1 HOUR, :auth_userid)');
+                $this->db->query('INSERT INTO auth(token, ip, expiry, visitor_id, blogger_id) VALUES (:token, :ip, NOW() + INTERVAL 1 HOUR, :visitorId, :teacherId)');
                 $this->db->bind(':token', $token);
                 $this->db->bind(':ip', $ip);
-                $this->db->bind(':auth_userid', $auth_userid);
 
+                switch ($type){
+                    case 'blogger':
+                        $this->db->bind(':visitorId', null);
+                        $this->db->bind(':bloggerId', $id);
+                        break;
+                    case 'student':
+                        $this->db->bind(':visitorId', $id);
+                        $this->db->bind(':bloggerId', null);
+                }
 
                 //inserts token with expiry and ip to database, return token on success or false on failure
                 if ($this->db->execute()) {

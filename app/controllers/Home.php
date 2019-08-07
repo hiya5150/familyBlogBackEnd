@@ -22,14 +22,31 @@ class Home extends Controller{
     public function notFound() {
         echo json_encode(['error' => '404 - not found']);
     }
+    // every time a function is called from one of the blogger controllers it will first test this to make sure it is actually a blogger trying to use the function
 
-//    public function index() {
-//        $posts = $this->postModel->getPosts();
-//        $data = [
-//            'title' => 'Welcome',
-//            'posts' => $posts
-//        ];
-//    }
+    public function verifyBloggerToken() {
+            if(isset($GLOBALS['headers'] ['Authorization'])) {
+                if(parent::verifyTokenUserType($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR']) === 'blogger') {
+                    echo json_encode(true);
+             } else {
+                echo json_encode(false);
+                }
+            } else {
+                echo json_encode(false);
+            }
+    }
 
+    // every time a function is called from one of the visitors controllers it will first test this to make sure it is actually a blogger trying to use the function
 
+    public function verifyVisitorToken() {
+        if(isset($GLOBALS['headers'] ['Authorization'])) {
+            if(parent::verifyTokenUserType($GLOBALS['headers'] ['Authorization'], $_SERVER['REMOTE_ADDR']) === 'visitor') {
+                echo json_encode(true);
+            } else {
+                echo json_encode(false);
+            }
+        } else {
+            echo json_encode(false);
+        }
+    }
 }

@@ -20,7 +20,7 @@ class Main
 //    }
 
     public function getPosts() {
-        $this->db->query('SELECT posts.*, users.user_id FROM posts INNER JOIN users on users.user_id = posts.user_id');
+        $this->db->query('SELECT posts.*, bloggers.blogger_id FROM posts INNER JOIN bloggers on bloggers.blogger_id = posts.blogger_id');
 
 
         return $this->db->resultSet();

@@ -1,7 +1,7 @@
 <?php
 //create URL's and load core controllers
 class Core {
-    protected $currentDirectory = 'SignIn';
+    protected $currentDirectory = 'main';
     protected $currentController = 'Home';
     protected $currentMethod = 'loadPosts';
     protected $params = [];
