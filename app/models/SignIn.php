@@ -55,9 +55,9 @@ class SignIn
     {
         try {
             //try creating random token else throw error
-            if ($token = bin2hex(random_bytes(60))) {
+            if ($token = bin2hex(random_bytes(32))) {
                 //hashing password
-                $this->db->query('INSERT INTO auth(token, ip, expiry, visitor_id, blogger_id) VALUES (:token, :ip, NOW() + INTERVAL 1 HOUR, :visitorId, :teacherId)');
+                $this->db->query('INSERT INTO auth(token, ip, expiry, visitor_id, blogger_id) VALUES (:token, :ip, NOW() + INTERVAL 1 HOUR, :visitorId, :bloggerId)');
                 $this->db->bind(':token', $token);
                 $this->db->bind(':ip', $ip);
 
@@ -66,7 +66,7 @@ class SignIn
                         $this->db->bind(':visitorId', null);
                         $this->db->bind(':bloggerId', $id);
                         break;
-                    case 'student':
+                    case 'visitor':
                         $this->db->bind(':visitorId', $id);
                         $this->db->bind(':bloggerId', null);
                 }
