@@ -22,4 +22,17 @@ class post {
             return false;
         }
     }
+
+    //this function returns all posts from the database
+    public function loadPosts() {
+        if($posts = $this->currentModel->loadPosts()) {
+            echo json_encode($posts);
+        } else {
+            echo json_encode(['success'=>false]);
+        }
+
+    }
+
 }
+
+// TODO correct loadPosts function. should have SQL statement. loadPosts isn't working right now.

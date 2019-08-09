@@ -8,7 +8,7 @@ class Login extends Controller
 
     public function __construct()
     {
-        $this->currentModel = $this->model('SignIn');
+        $this->currentModel = $this->model('main', 'SignIn');
     }
 
     public function bloggerLogin(){

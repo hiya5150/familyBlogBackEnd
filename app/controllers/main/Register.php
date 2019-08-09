@@ -7,7 +7,7 @@ class Register extends Controller
 
     public function __construct()
     {
-        $this->currentModel = $this->model('SignUp');
+        $this->currentModel = $this->model('main', 'SignUp');
     }
     // register blogger
     public function bloggerRegister()

@@ -3,13 +3,13 @@
 it will send the info to the post model*/
 class Posts extends Controller {
     public function __construct() {
-        $this->currentModel = $this->model('post');
+        $this->currentModel = $this->model('bloggers', 'post');
     }
 
     public function loadPosts() {
         if (isset($GLOBALS['headers']['Authorization'])) {
             if ($id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR'])) {
-                $posts = $this->currentModel->loadPosts();
+                $posts = $this->currentModel->getPosts();
                 if ($posts) {
                     echo json_encode($posts);
                 } else {

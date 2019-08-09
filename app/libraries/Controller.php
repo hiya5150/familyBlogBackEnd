@@ -2,9 +2,9 @@
 //base controller loads models and views
 class Controller {
     //load model
-    public function model($model) {
+    public function model($section, $model) {
         //require model file
-        require_once '../app/models/' . $model . '.php';
+        require_once '../app/models/' . $section . '/'. $model . '.php';
 
         //Instantiate model
         return new $model();
