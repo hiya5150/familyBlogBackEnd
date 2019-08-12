@@ -25,14 +25,13 @@ class post {
 
     //this function returns all posts from the database
     public function loadPosts() {
-        if($posts = $this->currentModel->loadPosts()) {
-            echo json_encode($posts);
-        } else {
-            echo json_encode(['success'=>false]);
-        }
+        $this->db->query('SELECT posts.*, bloggers.blogger_name FROM posts INNER JOIN bloggers ON bloggers.blogger_id = posts.blogger_id ORDER BY created_on DESC');
+        $results = $this->db->resultSet();
+
+        return $results;
 
     }
 
 }
 
-// TODO correct loadPosts function. should have SQL statement. loadPosts isn't working right now.
+

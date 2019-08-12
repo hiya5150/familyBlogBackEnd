@@ -9,7 +9,7 @@ class Posts extends Controller {
     public function loadPosts() {
         if (isset($GLOBALS['headers']['Authorization'])) {
             if ($id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR'])) {
-                $posts = $this->currentModel->getPosts();
+                $posts = $this->currentModel->loadPosts();
                 if ($posts) {
                     echo json_encode($posts);
                 } else {
