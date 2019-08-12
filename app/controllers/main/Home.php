@@ -7,6 +7,16 @@ class Home extends Controller{
         $this->currentModel = $this->model('main', 'Main');
 
     }
+    // this function returns all the posts from the database, since anyone can see the posts page it doesn't check for a token first
+    public function loadPosts() {
+            if($posts = $this->currentModel->getPosts()) {
+                // checks db for data
+                echo json_encode($posts);
+            }
+            else {
+                echo json_encode(['success'=>false]);
+            }
+    }
 
 
     //if the URL api request is unsuccessful, this will run
